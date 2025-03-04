@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <!-- 声明式编程 -->
+    <div id="app"></div><!-- Vue.js的根组件的模板 -->
+    <template id="root">
+        <input type="text" v-model="score">
+        <div v-if="score>90">
+            优秀
+        </div>
+        <div v-if="score>80">
+            良好
+        </div>
+        <div v-else-if="score>60">
+            及格
+        </div>
+        <div v-else>
+            不及格
+        </div>
+        <ul>
+            <!-- key保持数据的唯一性 -->
+            <li v-for="item in students" :key="item.id">
+                <p>{{item.name}}</p>
+            </li>
+        </ul>
+    </template>
+    <script>
+        // app就是应用实例
+        const app =Vue.createApp({
+            template:"#root",
+            // 根组件的数据
+            data(){
+                return{
+                    message:"helloworld",
+                    score:"0",
+                    students:[
+                        {id:1,name:"zhangsan",age:18},
+                    ]
+                }
+            }
+        })
+        const root=app.mount("#app")// mount 挂载
+        </script>
+    
+
+</body>
+</html>
